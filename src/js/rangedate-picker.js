@@ -172,6 +172,10 @@ export default {
     righttoleft: {
       type: String,
       default: 'false'
+    },
+    defaultPlaceholder: {
+      type: String,
+      default: 'Choose Dates'
     }
   },
   data () {
@@ -214,6 +218,12 @@ export default {
     startNextMonthDay: function () {
       return new Date(this.activeYearStart, this.startNextActiveMonth, 1).getDay()
     },
+    getDateRangeOrPlaceholder: function() {
+      if(this.daterange.start !== "" || this.dateRange.end !== "") {
+          return this.defaultPlaceholder
+      }
+      return this.dateRange.start + ' - ' + this.dateRange.end
+    }
     endMonthDate: function () {
       return new Date(this.activeYearEnd, this.startNextActiveMonth, 0).getDate()
     },
